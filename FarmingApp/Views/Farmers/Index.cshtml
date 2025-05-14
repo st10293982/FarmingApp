@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Farmers>
+@{
+    ViewData["Title"] = "Farmer Products";
+}
+
+<style>
+    body {
+        background-image: url('/images/field.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: white;
+        text-align: center;
+    }
+
+    h2, p {
+        text-shadow: 1px 1px 2px black;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    select, input[type="text"], button {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 6px;
+        border: none;
+        font-size: 16px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    .table {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    .footer-description {
+        margin-top: 30px;
+        font-size: 16px;
+        font-style: italic;
+    }
+
+    .content-wrapper {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 30px;
+        margin: 50px auto;
+        border-radius: 15px;
+        max-width: 1000px;
+    }
+</style>
+
+<div class="content-wrapper">
+    <h2>Farmer Products</h2>
+
+    <form asp-action="Index" method="get">
+        <select name="farmerId" asp-items="ViewBag.Farmers">
+            <option value="">-- All Farmers --</option>
+        </select>
+        <input type="text" name="search" placeholder="Search..." />
+        <button type="submit">Filter</button>
+    </form>
+
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Farmer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Category</td>
+                    <td>@item.ProductionDate.ToShortDateString()</td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p class="footer-description">
+        This page helps employees and farmers keep track of farm products and who produced them.
+    </p>
+</div>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<FarmingApp.Models.FarmingItems>
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<style>
+    body {
+        background-image: url('/images/trackor.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: white;
+        text-align: center;
+    }
+
+    .content-wrapper {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 40px;
+        margin: 50px auto;
+        border-radius: 15px;
+        max-width: 900px;
+    }
+
+    h2, p {
+        text-shadow: 1px 1px 2px black;
+    }
+
+    .table {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    .add-link {
+        margin-top: 20px;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #97a745;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+        .add-link:hover {
+            background-color: #7a913f;
+        }
+
+    .footer-description {
+        margin-top: 30px;
+        font-size: 16px;
+        font-style: italic;
+    }
+</style>
+
+<div class="content-wrapper">
+    <h2>Product List</h2>
+    <a class="add-link" href="/Farmers/Create">Add New Product</a>
+
+    <table class="table table-bordered mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Production Date</th>
+                <th>Employee</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductCategory</td>
+                    <td>@item.ProductionDate.ToShortDateString()</td>
+                    <td>@item.Employee?.FullName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p class="footer-description">
+        This page is made to help farmers manage and show their products easily.
+    </p>
+</div>

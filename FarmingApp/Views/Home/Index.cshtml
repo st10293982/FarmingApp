@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    body {
+        background-image: url('/images/drive.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: white;
+    }
+
+    .home-content {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 30px;
+        border-radius: 15px;
+        margin-top: 50px;
+    }
+
+    h1, p {
+        text-shadow: 1px 1px 2px black;
+    }
+</style>
+
+<div class="container text-center home-content">
+    <h1 class="display-4">Welcome</h1>
+
+    @if (User.IsInRole("Employee"))
+    {
+        <h2>Hello Employee</h2>
+    }
+    else
+    {
+        <h2>Hello Farmer</h2>
+    }
+
+    <p class="mt-4">
+Hi Welcome!!! to Farmology, the new platform for agriculture and farming to help all the farmers in the country    </p>
+</div>
