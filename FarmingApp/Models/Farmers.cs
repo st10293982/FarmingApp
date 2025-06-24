@@ -16,5 +16,6 @@ namespace FarmingApp.Models
         [DataType(DataType.Date)]
         [Display(Name = "Production Date")]
         public DateTime ProductionDate { get; set; }
+      
     }
 }

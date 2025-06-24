@@ -1,0 +1,28 @@
+﻿@model FarmingApp.Models.Employee
+
+@{
+    ViewData["Title"] = "Add Farmer";
+}
+
+<h2>Add New Farmer</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FarmLocation"></label>
+        <input asp-for="FarmLocation" class="form-control" />
+        <span asp-validation-for="FarmLocation" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

@@ -42,5 +42,18 @@ namespace FarmingApp.Controllers
             }
             return View(farmers);
         }
+        public async Task<IActionResult> Products(int id)
+        {
+            var farmer = await _context.Employees
+                .Include(f => f.Products)
+                .FirstOrDefaultAsync(f => f.Id == id);
+
+            if (farmer == null)
+            {
+                return NotFound();
+            }
+
+            return View(farmer);
+        }
     }
 }
